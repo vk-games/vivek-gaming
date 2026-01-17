@@ -8,63 +8,53 @@
 <style>
 body{
   margin:0;
-  font-family:system-ui, Arial;
+  font-family:system-ui;
   background:#020617;
   color:white;
+  text-align:center;
 }
 
-/* RGB BANNER ONLY */
+/* RGB BANNER */
 header{
   padding:16px;
-  text-align:center;
-  animation: rgb 6s linear infinite;
-  color:black;
-  font-weight:900;
   font-size:22px;
+  font-weight:900;
+  animation:rgb 6s linear infinite;
+  color:black;
 }
 @keyframes rgb{
-  0%{background:#ff0000}
-  20%{background:#ffff00}
-  40%{background:#00ff00}
-  60%{background:#00ffff}
-  80%{background:#0000ff}
-  100%{background:#ff00ff}
+  0%{background:red}
+  20%{background:yellow}
+  40%{background:lime}
+  60%{background:cyan}
+  80%{background:blue}
+  100%{background:magenta}
 }
 
-.section{padding:16px}
-.games{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:14px;
-}
-.card{
-  background:#0f172a;
-  padding:14px;
-  border-radius:14px;
-  text-align:center;
-}
-.card h3{margin:6px 0 10px}
-
-/* RED PLAY BUTTON */
+/* BUTTONS */
 .btn{
   background:#dc2626;
   color:white;
   border:none;
-  padding:10px;
-  width:100%;
+  padding:12px 18px;
   border-radius:10px;
+  font-size:16px;
   font-weight:700;
-  font-size:15px;
+  margin:8px;
 }
 
-/* GAME AREA */
-#game{
-  margin-top:16px;
-  text-align:center;
-}
+/* GAME */
 canvas{
   background:black;
-  border-radius:10px;
+  border-radius:12px;
+  margin-top:15px;
+}
+
+.controls{
+  display:flex;
+  justify-content:center;
+  gap:20px;
+  margin-top:10px;
 }
 </style>
 </head>
@@ -73,103 +63,84 @@ canvas{
 
 <header>🎮 VK Running Games</header>
 
-<div class="section">
-<div class="games">
+<h2>Box Dodge Game</h2>
 
-<div class="card">
-<h3>Runner Game</h3>
-<button class="btn" onclick="startRunner()">Play</button>
+<canvas id="game" width="300" height="400"></canvas>
+
+<div class="controls">
+  <button class="btn" ontouchstart="moveLeft()">◀ Left</button>
+  <button class="btn" ontouchstart="moveRight()">Right ▶</button>
 </div>
 
-<div class="card">
-<h3>Snake Game</h3>
-<button class="btn" onclick="startSnake()">Play</button>
-</div>
-
-<div class="card">
-<h3>Jump Game</h3>
-<button class="btn" onclick="startJump()">Play</button>
-</div>
-
-<div class="card">
-<h3>Box Dodge</h3>
-<button class="btn" onclick="startDodge()">Play</button>
-</div>
-
-</div>
-
-<div id="game"></div>
-</div>
+<p id="info">Score: 0</p>
 
 <script>
-/* CLEAR GAME */
-function clearGame(){
-  document.getElementById("game").innerHTML="";
+const canvas=document.getElementById("game");
+const ctx=canvas.getContext("2d");
+
+let player={x:140,y:350,w:20,h:20};
+let obs={x:Math.random()*280,y:0,w:20,h:20};
+let score=0;
+let speed=3;
+let gameOver=false;
+
+function moveLeft(){ if(player.x>0) player.x-=25; }
+function moveRight(){ if(player.x<280) player.x+=25; }
+
+function reset(){
+  player.x=140;
+  obs.y=0;
+  score=0;
+  speed=3;
+  gameOver=false;
 }
 
-/* RUNNER */
-function startRunner(){
-clearGame();
-game.innerHTML='<canvas id="c" width="300" height="200"></canvas>';
-let c=c=document.getElementById("c"),x=30,y=150,ob=300;
-let ctx=c.getContext("2d");
-setInterval(()=>{
-ctx.clearRect(0,0,300,200);
-ctx.fillStyle="lime";ctx.fillRect(x,y,20,20);
-ctx.fillStyle="red";ctx.fillRect(ob,150,20,20);
-ob-=5;if(ob<0)ob=300;
-},50);
-document.onclick=()=>y=120;
+function update(){
+  if(gameOver) return;
+
+  ctx.clearRect(0,0,300,400);
+
+  // player
+  ctx.fillStyle="white";
+  ctx.fillRect(player.x,player.y,player.w,player.h);
+
+  // obstacle
+  ctx.fillStyle="red";
+  ctx.fillRect(obs.x,obs.y,obs.w,obs.h);
+  obs.y+=speed;
+
+  // collision
+  if(
+    player.x < obs.x + obs.w &&
+    player.x + player.w > obs.x &&
+    player.y < obs.y + obs.h &&
+    player.y + player.h > obs.y
+  ){
+    gameOver=true;
+    document.getElementById("info").innerText="GAME OVER! Tap to Restart";
+  }
+
+  // reset obstacle
+  if(obs.y>400){
+    obs.y=0;
+    obs.x=Math.random()*280;
+    score++;
+    speed+=0.2;
+    document.getElementById("info").innerText="Score: "+score;
+  }
+
+  requestAnimationFrame(update);
 }
 
-/* SNAKE */
-function startSnake(){
-clearGame();
-game.innerHTML='<canvas id="s" width="300" height="200"></canvas>';
-let c=document.getElementById("s"),ctx=c.getContext("2d");
-let x=100,y=100,dx=10,dy=0;
-document.onkeydown=e=>{
-if(e.key=="ArrowUp"){dx=0;dy=-10}
-if(e.key=="ArrowDown"){dx=0;dy=10}
-if(e.key=="ArrowLeft"){dx=-10;dy=0}
-if(e.key=="ArrowRight"){dx=10;dy=0}
-};
-setInterval(()=>{
-ctx.clearRect(0,0,300,200);
-x+=dx;y+=dy;
-ctx.fillStyle="lime";ctx.fillRect(x,y,10,10);
-},100);
-}
+canvas.addEventListener("click",()=>{
+  if(gameOver){
+    reset();
+    document.getElementById("info").innerText="Score: 0";
+    update();
+  }
+});
 
-/* JUMP */
-function startJump(){
-clearGame();
-game.innerHTML='<h3>Tap to Jump</h3><canvas id="j" width="300" height="200"></canvas>';
-let c=document.getElementById("j"),ctx=c.getContext("2d");
-let y=150,vy=0;
-setInterval(()=>{
-ctx.clearRect(0,0,300,200);
-vy+=1;y+=vy;
-if(y>150){y=150;vy=0}
-ctx.fillStyle="cyan";ctx.fillRect(50,y,20,20);
-},50);
-document.onclick=()=>vy=-15;
-}
-
-/* DODGE */
-function startDodge(){
-clearGame();
-game.innerHTML='<canvas id="d" width="300" height="200"></canvas>';
-let c=document.getElementById("d"),ctx=c.getContext("2d");
-let x=140,obx=0;
-setInterval(()=>{
-ctx.clearRect(0,0,300,200);
-ctx.fillStyle="white";ctx.fillRect(x,160,20,20);
-ctx.fillStyle="red";ctx.fillRect(obx,160,20,20);
-obx+=5;if(obx>300)obx=0;
-},50);
-document.onmousemove=e=>x=e.offsetX;
-}
+update();
 </script>
 
 </body>
