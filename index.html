@@ -2,151 +2,186 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Vivek Gaming Zone</title>
+<title>VK Running Games</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- SEO -->
-<meta name="description" content="Play offline and online games on Vivek Gaming Zone. Mobile friendly gaming website.">
-<meta name="keywords" content="online games, offline games, mobile games">
+<meta name="description" content="Play online running games. RGB gaming zone by VK.">
+<meta name="keywords" content="running games, endless runner, online games">
 
 <style>
+:root{--g:#22c55e}
 *{box-sizing:border-box}
 body{
   margin:0;
-  font-family:system-ui;
+  font-family:system-ui, Arial;
   background:#020617;
   color:white;
 }
+
+/* RGB HEADER */
 header{
   padding:16px;
   text-align:center;
-  font-size:22px;
-  font-weight:bold;
-  background:linear-gradient(90deg,#22c55e,#16a34a);
-  color:black;
+  animation: rgb 6s linear infinite;
 }
-.section{
-  padding:15px;
+@keyframes rgb{
+  0%{background:#ff0000}
+  16%{background:#ff7f00}
+  32%{background:#ffff00}
+  48%{background:#00ff00}
+  64%{background:#0000ff}
+  80%{background:#4b0082}
+  100%{background:#8f00ff}
 }
-h2{
-  margin:10px 0;
-  font-size:18px;
+
+/* VK LOGO (3D) */
+.logo{
+  display:inline-flex;
+  align-items:center;justify-content:center;
+  width:48px;height:48px;
+  border-radius:14px;
+  background:#000;
+  color:#0f0;
+  font-weight:900;
+  box-shadow:0 0 14px rgba(0,0,0,.7), inset 0 0 10px rgba(255,255,255,.1);
+  margin-right:8px;
 }
+.title{font-size:22px;font-weight:900;color:#000}
+
+.section{padding:16px}
+h2{font-size:18px;margin:8px 0 12px}
 .games{
   display:grid;
   grid-template-columns:repeat(2,1fr);
-  gap:12px;
+  gap:14px;
 }
 .card{
   background:#0f172a;
-  padding:12px;
-  border-radius:12px;
+  padding:14px;
+  border-radius:14px;
   text-align:center;
+  box-shadow:0 6px 16px rgba(0,0,0,.4);
 }
-.card button, .card a{
+.card h3{margin:6px 0 10px;font-size:15px}
+
+/* RGB BUTTON */
+.btn{
   display:block;
-  margin-top:8px;
   padding:10px;
-  background:#22c55e;
-  border:none;
-  border-radius:8px;
-  font-weight:bold;
-  color:black;
+  border-radius:10px;
   text-decoration:none;
+  font-weight:900;
+  color:#000;
+  animation: rgb 5s linear infinite;
 }
-footer{
-  padding:12px;
-  font-size:12px;
-  text-align:center;
-  background:#020617;
-  opacity:0.7;
+
+/* GAME PLAYER */
+#player{
+  display:none;
+  position:fixed;inset:0;
+  background:#000;
+  z-index:999;
 }
-canvas{
-  background:black;
-  display:block;
-  margin:auto;
+#player iframe{
+  width:100%;height:100%;border:0;
 }
+#close{
+  position:absolute;top:10px;right:10px;
+  padding:8px 12px;border-radius:8px;
+  background:#ef4444;color:#000;font-weight:900;
+}
+
+/* ADS PLACEHOLDER */
+.ad{
+  margin:12px auto;
+  width:90%;height:90px;
+  border:2px dashed #334155;
+  border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  color:#94a3b8;font-size:12px;
+}
+
+footer{text-align:center;font-size:12px;opacity:.7;padding:12px}
 </style>
 </head>
 
 <body>
 
-<header>🎮 Vivek Gaming Zone</header>
+<header>
+  <span class="logo">VK</span>
+  <span class="title">Vivek Running Games</span>
+</header>
 
-<!-- OFFLINE GAMES -->
 <div class="section">
-<h2>🧠 Offline Games (No Internet)</h2>
+<h2>🔥 Online Running Games</h2>
+
 <div class="games">
 
 <div class="card">
-<h3>🐍 Snake</h3>
-<button onclick="startSnake()">Play</button>
+<h3>Subway Surfers</h3>
+<a class="btn" onclick="play('https://poki.com/en/g/subway-surfers')">Play</a>
 </div>
 
 <div class="card">
-<h3>❌⭕ Tic Tac Toe</h3>
-<button onclick="startTTT()">Play</button>
-</div>
-
-</div>
-</div>
-
-<!-- ONLINE GAMES -->
-<div class="section">
-<h2>🌐 Online Games</h2>
-<div class="games">
-
-<div class="card">
-<h3>🏎 Racing</h3>
-<a href="https://games.crazygames.com/en_US/madalin-stunt-cars-2/index.html" target="_blank">Play</a>
+<h3>Temple Run 2</h3>
+<a class="btn" onclick="play('https://poki.com/en/g/temple-run-2')">Play</a>
 </div>
 
 <div class="card">
-<h3>🔫 Shooting</h3>
-<a href="https://games.crazygames.com/en_US/krunker-io/index.html" target="_blank">Play</a>
+<h3>Run 3</h3>
+<a class="btn" onclick="play('https://poki.com/en/g/run-3')">Play</a>
+</div>
+
+<div class="card">
+<h3>Shortcut Run</h3>
+<a class="btn" onclick="play('https://poki.com/en/g/shortcut-run')">Play</a>
+</div>
+
+<div class="card">
+<h3>Parkour Race</h3>
+<a class="btn" onclick="play('https://poki.com/en/g/parkour-race')">Play</a>
+</div>
+
+<div class="card">
+<h3>Stair Run Online</h3>
+<a class="btn" onclick="play('https://poki.com/en/g/stair-run-online')">Play</a>
+</div>
+
+<div class="card">
+<h3>Rooftop Run</h3>
+<a class="btn" onclick="play('https://poki.com/en/g/rooftop-run')">Play</a>
+</div>
+
+<div class="card">
+<h3>Fun Race 3D</h3>
+<a class="btn" onclick="play('https://poki.com/en/g/fun-race-3d')">Play</a>
 </div>
 
 </div>
+
+<div class="ad">AdSense Ad Here (Future)</div>
 </div>
 
-<!-- GAME AREA -->
-<div id="gameArea"></div>
+<!-- PLAYER -->
+<div id="player">
+  <button id="close" onclick="closePlayer()">X</button>
+  <iframe id="frame"></iframe>
+</div>
 
-<footer>
-© 2026 Vivek Gaming Zone
-</footer>
+<footer>© 2026 VK • Vivek Running Games</footer>
 
 <script>
-/* ---------- SNAKE GAME ---------- */
-function startSnake(){
-document.getElementById("gameArea").innerHTML=
-'<canvas id="snake" width="300" height="300"></canvas>';
-let c=document.getElementById("snake");
-let ctx=c.getContext("2d");
-let x=150,y=150,dx=10,dy=0;
-document.onkeydown=e=>{
-if(e.key=="ArrowUp"){dx=0;dy=-10}
-if(e.key=="ArrowDown"){dx=0;dy=10}
-if(e.key=="ArrowLeft"){dx=-10;dy=0}
-if(e.key=="ArrowRight"){dx=10;dy=0}
-};
-setInterval(()=>{
-ctx.fillStyle="black";
-ctx.fillRect(0,0,300,300);
-ctx.fillStyle="lime";
-x+=dx;y+=dy;
-ctx.fillRect(x,y,10,10);
-},100);
+function play(url){
+  document.getElementById('player').style.display='block';
+  document.getElementById('frame').src=url;
 }
-
-/* ---------- TIC TAC TOE ---------- */
-function startTTT(){
-document.getElementById("gameArea").innerHTML=
-'<h3 style="text-align:center">Coming Soon…</h3>';
+function closePlayer(){
+  document.getElementById('frame').src='';
+  document.getElementById('player').style.display='none';
 }
 </script>
 
-<!-- FUTURE ADS PLACE -->
+<!-- AdSense (Future) -->
 <!--
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 -->
