@@ -14,9 +14,13 @@ body{
   text-align:center;
 }
 
-/* RGB BANNER */
+/* RGB HEADER */
 header{
-  padding:16px;
+  padding:14px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
   font-size:22px;
   font-weight:900;
   animation:rgb 6s linear infinite;
@@ -31,23 +35,47 @@ header{
   100%{background:magenta}
 }
 
-/* BUTTONS */
+/* VK LOGO */
+.logo{
+  width:42px;
+  height:42px;
+  border-radius:12px;
+  background:black;
+  color:#00ff00;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:900;
+}
+
+/* MENU */
+.menu{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+  padding:14px;
+}
+.card{
+  background:#0f172a;
+  padding:14px;
+  border-radius:14px;
+}
 .btn{
   background:#dc2626;
   color:white;
   border:none;
-  padding:12px 18px;
+  padding:10px;
+  width:100%;
   border-radius:10px;
-  font-size:16px;
+  font-size:15px;
   font-weight:700;
-  margin:8px;
 }
 
 /* GAME */
 canvas{
   background:black;
   border-radius:12px;
-  margin-top:15px;
+  margin-top:10px;
 }
 
 .controls{
@@ -61,86 +89,139 @@ canvas{
 
 <body>
 
-<header>🎮 VK Running Games</header>
+<header>
+  <div class="logo">VK</div>
+  VK Running Games
+</header>
 
-<h2>Box Dodge Game</h2>
-
-<canvas id="game" width="300" height="400"></canvas>
-
-<div class="controls">
-  <button class="btn" ontouchstart="moveLeft()">◀ Left</button>
-  <button class="btn" ontouchstart="moveRight()">Right ▶</button>
+<!-- GAME MENU -->
+<div class="menu">
+  <div class="card">
+    <h3>Box Dodge</h3>
+    <button class="btn" onclick="startBoxDodge()">Play</button>
+  </div>
+  <div class="card">
+    <h3>Tap Jump</h3>
+    <button class="btn" onclick="startJump()">Play</button>
+  </div>
 </div>
 
-<p id="info">Score: 0</p>
+<!-- GAME AREA -->
+<div id="gameArea"></div>
 
 <script>
-const canvas=document.getElementById("game");
-const ctx=canvas.getContext("2d");
+let canvas,ctx,player,obs,score,highScore,speed,gameOver,mode;
 
-let player={x:140,y:350,w:20,h:20};
-let obs={x:Math.random()*280,y:0,w:20,h:20};
-let score=0;
-let speed=3;
-let gameOver=false;
-
-function moveLeft(){ if(player.x>0) player.x-=25; }
-function moveRight(){ if(player.x<280) player.x+=25; }
-
-function reset(){
-  player.x=140;
-  obs.y=0;
-  score=0;
-  speed=3;
-  gameOver=false;
+/* COMMON */
+function clearGame(){
+  document.getElementById("gameArea").innerHTML="";
 }
 
-function update(){
-  if(gameOver) return;
+/* BOX DODGE GAME */
+function startBoxDodge(){
+clearGame();
+mode="box";
+score=0;
+speed=3;
+gameOver=false;
+highScore=localStorage.getItem("boxHigh")||0;
 
-  ctx.clearRect(0,0,300,400);
+gameArea.innerHTML=`
+<h3>Box Dodge</h3>
+<p id="info">Score: 0 | High Score: ${highScore}</p>
+<canvas id="game" width="300" height="400"></canvas>
+<div class="controls">
+<button class="btn" ontouchstart="left()">◀</button>
+<button class="btn" ontouchstart="right()">▶</button>
+</div>
+`;
 
-  // player
-  ctx.fillStyle="white";
-  ctx.fillRect(player.x,player.y,player.w,player.h);
+canvas=document.getElementById("game");
+ctx=canvas.getContext("2d");
 
-  // obstacle
-  ctx.fillStyle="red";
-  ctx.fillRect(obs.x,obs.y,obs.w,obs.h);
-  obs.y+=speed;
-
-  // collision
-  if(
-    player.x < obs.x + obs.w &&
-    player.x + player.w > obs.x &&
-    player.y < obs.y + obs.h &&
-    player.y + player.h > obs.y
-  ){
-    gameOver=true;
-    document.getElementById("info").innerText="GAME OVER! Tap to Restart";
-  }
-
-  // reset obstacle
-  if(obs.y>400){
-    obs.y=0;
-    obs.x=Math.random()*280;
-    score++;
-    speed+=0.2;
-    document.getElementById("info").innerText="Score: "+score;
-  }
-
-  requestAnimationFrame(update);
-}
-
-canvas.addEventListener("click",()=>{
-  if(gameOver){
-    reset();
-    document.getElementById("info").innerText="Score: 0";
-    update();
-  }
-});
+player={x:140,y:350,w:20,h:20};
+obs={x:Math.random()*280,y:0,w:20,h:20};
 
 update();
+}
+
+function left(){ if(player.x>0) player.x-=25; }
+function right(){ if(player.x<280) player.x+=25; }
+
+function update(){
+if(gameOver) return;
+ctx.clearRect(0,0,300,400);
+
+// player
+ctx.fillStyle="white";
+ctx.fillRect(player.x,player.y,20,20);
+
+// obstacle
+ctx.fillStyle="red";
+ctx.fillRect(obs.x,obs.y,20,20);
+obs.y+=speed;
+
+// collision
+if(
+player.x<obs.x+20 &&
+player.x+20>obs.x &&
+player.y<obs.y+20 &&
+player.y+20>obs.y
+){
+gameOver=true;
+if(score>highScore){
+localStorage.setItem("boxHigh",score);
+highScore=score;
+}
+document.getElementById("info").innerText=
+"GAME OVER | Score: "+score+" | High Score: "+highScore;
+return;
+}
+
+// reset obstacle
+if(obs.y>400){
+obs.y=0;
+obs.x=Math.random()*280;
+score++;
+speed+=0.2;
+document.getElementById("info").innerText=
+"Score: "+score+" | High Score: "+highScore;
+}
+
+requestAnimationFrame(update);
+}
+
+/* TAP JUMP GAME */
+function startJump(){
+clearGame();
+let y=150,vy=0,score=0;
+highScore=localStorage.getItem("jumpHigh")||0;
+
+gameArea.innerHTML=`
+<h3>Tap Jump</h3>
+<p id="jumpInfo">Score: 0 | High Score: ${highScore}</p>
+<canvas id="jump" width="300" height="300"></canvas>
+`;
+
+let c=document.getElementById("jump");
+let cx=c.getContext("2d");
+
+c.onclick=()=>vy=-15;
+
+setInterval(()=>{
+cx.clearRect(0,0,300,300);
+vy+=1;y+=vy;
+if(y>150){y=150;vy=0;score++;}
+cx.fillStyle="cyan";
+cx.fillRect(140,y,20,20);
+document.getElementById("jumpInfo").innerText=
+"Score: "+score+" | High Score: "+highScore;
+if(score>highScore){
+highScore=score;
+localStorage.setItem("jumpHigh",score);
+}
+},50);
+}
 </script>
 
 </body>
