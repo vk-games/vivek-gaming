@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Vivek Gaming Zone</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- SEO -->
+<meta name="description" content="Play offline and online games on Vivek Gaming Zone. Mobile friendly gaming website.">
+<meta name="keywords" content="online games, offline games, mobile games">
+
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:system-ui;
+  background:#020617;
+  color:white;
+}
+header{
+  padding:16px;
+  text-align:center;
+  font-size:22px;
+  font-weight:bold;
+  background:linear-gradient(90deg,#22c55e,#16a34a);
+  color:black;
+}
+.section{
+  padding:15px;
+}
+h2{
+  margin:10px 0;
+  font-size:18px;
+}
+.games{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+}
+.card{
+  background:#0f172a;
+  padding:12px;
+  border-radius:12px;
+  text-align:center;
+}
+.card button, .card a{
+  display:block;
+  margin-top:8px;
+  padding:10px;
+  background:#22c55e;
+  border:none;
+  border-radius:8px;
+  font-weight:bold;
+  color:black;
+  text-decoration:none;
+}
+footer{
+  padding:12px;
+  font-size:12px;
+  text-align:center;
+  background:#020617;
+  opacity:0.7;
+}
+canvas{
+  background:black;
+  display:block;
+  margin:auto;
+}
+</style>
+</head>
+
+<body>
+
+<header>🎮 Vivek Gaming Zone</header>
+
+<!-- OFFLINE GAMES -->
+<div class="section">
+<h2>🧠 Offline Games (No Internet)</h2>
+<div class="games">
+
+<div class="card">
+<h3>🐍 Snake</h3>
+<button onclick="startSnake()">Play</button>
+</div>
+
+<div class="card">
+<h3>❌⭕ Tic Tac Toe</h3>
+<button onclick="startTTT()">Play</button>
+</div>
+
+</div>
+</div>
+
+<!-- ONLINE GAMES -->
+<div class="section">
+<h2>🌐 Online Games</h2>
+<div class="games">
+
+<div class="card">
+<h3>🏎 Racing</h3>
+<a href="https://games.crazygames.com/en_US/madalin-stunt-cars-2/index.html" target="_blank">Play</a>
+</div>
+
+<div class="card">
+<h3>🔫 Shooting</h3>
+<a href="https://games.crazygames.com/en_US/krunker-io/index.html" target="_blank">Play</a>
+</div>
+
+</div>
+</div>
+
+<!-- GAME AREA -->
+<div id="gameArea"></div>
+
+<footer>
+© 2026 Vivek Gaming Zone
+</footer>
+
+<script>
+/* ---------- SNAKE GAME ---------- */
+function startSnake(){
+document.getElementById("gameArea").innerHTML=
+'<canvas id="snake" width="300" height="300"></canvas>';
+let c=document.getElementById("snake");
+let ctx=c.getContext("2d");
+let x=150,y=150,dx=10,dy=0;
+document.onkeydown=e=>{
+if(e.key=="ArrowUp"){dx=0;dy=-10}
+if(e.key=="ArrowDown"){dx=0;dy=10}
+if(e.key=="ArrowLeft"){dx=-10;dy=0}
+if(e.key=="ArrowRight"){dx=10;dy=0}
+};
+setInterval(()=>{
+ctx.fillStyle="black";
+ctx.fillRect(0,0,300,300);
+ctx.fillStyle="lime";
+x+=dx;y+=dy;
+ctx.fillRect(x,y,10,10);
+},100);
+}
+
+/* ---------- TIC TAC TOE ---------- */
+function startTTT(){
+document.getElementById("gameArea").innerHTML=
+'<h3 style="text-align:center">Coming Soon…</h3>';
+}
+</script>
+
+<!-- FUTURE ADS PLACE -->
+<!--
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+-->
+
+</body>
+</html>
