@@ -9,13 +9,13 @@
 body{
   margin:0;
   font-family: system-ui, Arial;
-  background:#f4f6fb;
+  background:#f3f6ff;
   color:#222;
 }
 
 /* HEADER */
 header{
-  background:linear-gradient(135deg,#4f46e5,#3b82f6);
+  background:linear-gradient(135deg,#2563eb,#1e40af);
   color:#fff;
   padding:18px;
   text-align:center;
@@ -23,75 +23,67 @@ header{
   font-weight:600;
 }
 
-/* HOME */
+/* GRID */
 .container{
   display:grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
-  gap:20px;
-  padding:30px;
+  grid-template-columns: repeat(2, 1fr);
+  gap:18px;
+  padding:20px;
+}
+
+@media(min-width:700px){
+  .container{
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 /* CARD */
 .book{
   background:#ffffff;
-  border-radius:14px;
-  padding:25px 15px;
+  border-radius:16px;
+  padding:18px;
+  box-shadow:0 8px 20px rgba(0,0,0,0.12);
   text-align:center;
-  box-shadow:0 10px 25px rgba(0,0,0,0.12);
-  cursor:pointer;
-  transition:0.25s;
-}
-
-.book:hover{
-  transform:translateY(-6px);
-  box-shadow:0 15px 30px rgba(0,0,0,0.18);
 }
 
 .book h2{
-  margin:15px 0 5px;
-  color:#1e40af;
+  margin:10px 0 5px;
+  color:#1e3a8a;
 }
 
-.book span{
+.unit{
   display:inline-block;
-  margin:10px 0;
-  padding:6px 14px;
   background:#e0e7ff;
   color:#3730a3;
+  padding:5px 14px;
   border-radius:20px;
   font-size:14px;
+  margin-bottom:10px;
 }
 
-.book p{
+/* BUTTONS */
+.btn{
+  display:block;
+  margin:8px 0;
+  padding:10px;
+  border-radius:10px;
+  text-decoration:none;
   font-size:14px;
-  color:#555;
+  font-weight:600;
 }
 
-/* VIEWER */
-#viewer{
-  display:none;
-  width:100%;
-  height:100vh;
-  background:#000;
-}
-
-#viewer iframe{
-  width:100%;
-  height:100%;
-  border:none;
-}
-
-/* BACK BUTTON */
-.back{
-  position:fixed;
-  top:12px;
-  right:12px;
-  background:#111;
+.open{
+  background:#2563eb;
   color:#fff;
-  padding:8px 14px;
-  border-radius:8px;
-  cursor:pointer;
-  z-index:999;
+}
+
+.download{
+  background:#16a34a;
+  color:#fff;
+}
+
+.btn:active{
+  opacity:0.8;
 }
 </style>
 </head>
@@ -100,60 +92,49 @@ header{
 
 <header>📘 Vivek Diploma Study</header>
 
-<!-- HOME -->
-<div class="container" id="home">
+<div class="container">
 
-  <div class="book" onclick="openPDF('Mathematics-II_73700437_2026_01_07_16_41.pdf')">
-    <h2>Math-2</h2>
-    <span>Unit-1</span>
-    <p>Tap to open PDF</p>
+  <!-- UNIT 1 -->
+  <div class="book">
+    <h2>📐 Math-2</h2>
+    <div class="unit">Unit-1</div>
+    <a class="btn open" href="Mathematics-II_73700437_2026_01_07_16_41.pdf" target="_blank">📖 Open PDF</a>
+    <a class="btn download" href="Mathematics-II_73700437_2026_01_07_16_41.pdf" download>⬇ Download</a>
   </div>
 
-  <div class="book" onclick="openPDF('Mathematics-II_Unit2.pdf')">
-    <h2>Math-2</h2>
-    <span>Unit-2</span>
-    <p>Tap to open PDF</p>
+  <!-- UNIT 2 -->
+  <div class="book">
+    <h2>📐 Math-2</h2>
+    <div class="unit">Unit-2</div>
+    <a class="btn open" href="Mathematics-II_Unit2.pdf" target="_blank">📖 Open PDF</a>
+    <a class="btn download" href="Mathematics-II_Unit2.pdf" download>⬇ Download</a>
   </div>
 
-  <div class="book" onclick="openPDF('Mathematics-II_Unit-3.pdf')">
-    <h2>Math-2</h2>
-    <span>Unit-3</span>
-    <p>Tap to open PDF</p>
+  <!-- UNIT 3 -->
+  <div class="book">
+    <h2>📐 Math-2</h2>
+    <div class="unit">Unit-3</div>
+    <a class="btn open" href="Mathematics-II_Unit-3.pdf" target="_blank">📖 Open PDF</a>
+    <a class="btn download" href="Mathematics-II_Unit-3.pdf" download>⬇ Download</a>
   </div>
 
-  <div class="book" onclick="openPDF('Mathematics-II_Unit-4.pdf')">
-    <h2>Math-2</h2>
-    <span>Unit-4</span>
-    <p>Tap to open PDF</p>
+  <!-- UNIT 4 -->
+  <div class="book">
+    <h2>📐 Math-2</h2>
+    <div class="unit">Unit-4</div>
+    <a class="btn open" href="Mathematics-II_Unit-4.pdf" target="_blank">📖 Open PDF</a>
+    <a class="btn download" href="Mathematics-II_Unit-4.pdf" download>⬇ Download</a>
   </div>
 
-  <div class="book" onclick="openPDF('Mathematics-II_Unit-5.pdf')">
-    <h2>Math-2</h2>
-    <span>Unit-5</span>
-    <p>Tap to open PDF</p>
+  <!-- UNIT 5 -->
+  <div class="book">
+    <h2>📐 Math-2</h2>
+    <div class="unit">Unit-5</div>
+    <a class="btn open" href="Mathematics-II_Unit-5.pdf" target="_blank">📖 Open PDF</a>
+    <a class="btn download" href="Mathematics-II_Unit-5.pdf" download>⬇ Download</a>
   </div>
 
 </div>
-
-<!-- VIEWER -->
-<div id="viewer">
-  <div class="back" onclick="goBack()">⬅ Back</div>
-  <iframe id="pdfFrame"></iframe>
-</div>
-
-<script>
-function openPDF(file){
-  document.getElementById("home").style.display="none";
-  document.getElementById("viewer").style.display="block";
-  document.getElementById("pdfFrame").src = file;
-}
-
-function goBack(){
-  document.getElementById("viewer").style.display="none";
-  document.getElementById("home").style.display="grid";
-  document.getElementById("pdfFrame").src = "";
-}
-</script>
 
 </body>
 </html>
