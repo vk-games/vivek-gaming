@@ -1,178 +1,182 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vivek Diploma Study</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style>
-:root{
-  --bg:#f4f7ff;
-  --card:#ffffff;
-  --text:#1f2937;
-  --primary:#2563eb;
-}
-.dark{
-  --bg:#0f172a;
-  --card:#1e293b;
-  --text:#e5e7eb;
-  --primary:#38bdf8;
-}
+  <!-- ✅ GOOGLE SEARCH CONSOLE VERIFICATION -->
+  <meta name="google-site-verification"
+        content="aIPjzCuvdDsULeWmdu3B7wom-cJnO30sSWMa8hOUWOQ" />
 
-body{
-  margin:0;
-  font-family:system-ui,Arial;
-  background:var(--bg);
-  color:var(--text);
-  transition:0.3s;
-}
+  <title>Vivek Diploma Study</title>
 
-/* HEADER */
-header{
-  background:linear-gradient(135deg,var(--primary),#1e3a8a);
-  color:#fff;
-  padding:16px;
-  text-align:center;
-  position:sticky;
-  top:0;
-  z-index:100;
-}
-.toggle{
-  position:absolute;
-  right:14px;
-  top:14px;
-  border:none;
-  padding:6px 12px;
-  border-radius:20px;
-  font-weight:600;
-  cursor:pointer;
-}
+  <style>
+    :root{
+      --bg:#f4f7ff;
+      --card:#ffffff;
+      --text:#1f2937;
+      --primary:#2563eb;
+    }
+    .dark{
+      --bg:#0f172a;
+      --card:#1e293b;
+      --text:#e5e7eb;
+      --primary:#38bdf8;
+    }
 
-/* IMAGE SLIDER */
-.marquee{
-  overflow:hidden;
-  background:#fff;
-  border-bottom:4px solid var(--primary);
-}
-.marquee-track{
-  display:flex;
-  width:max-content;
-  animation:scroll 20s linear infinite;
-}
-.marquee img{
-  height:180px;
-  margin:10px;
-  border-radius:14px;
-  box-shadow:0 6px 15px rgba(0,0,0,0.2);
-}
-@keyframes scroll{
-  from{transform:translateX(0);}
-  to{transform:translateX(-50%);}
-}
+    body{
+      margin:0;
+      font-family:system-ui, Arial;
+      background:var(--bg);
+      color:var(--text);
+      transition:0.3s;
+    }
 
-/* SEARCH */
-.search{
-  padding:14px;
-  text-align:center;
-}
-.search input{
-  width:90%;
-  max-width:400px;
-  padding:12px;
-  border-radius:30px;
-  border:none;
-  outline:none;
-}
+    /* HEADER */
+    header{
+      background:linear-gradient(135deg,var(--primary),#1e3a8a);
+      color:#fff;
+      padding:16px;
+      text-align:center;
+      position:sticky;
+      top:0;
+      z-index:100;
+    }
+    .toggle{
+      position:absolute;
+      right:14px;
+      top:14px;
+      border:none;
+      padding:6px 12px;
+      border-radius:20px;
+      font-weight:600;
+      cursor:pointer;
+    }
 
-/* TABS */
-.tabs{
-  display:flex;
-  justify-content:center;
-  gap:10px;
-  padding:10px;
-  flex-wrap:wrap;
-}
-.tab{
-  padding:8px 16px;
-  border-radius:20px;
-  background:#e0e7ff;
-  font-weight:600;
-  cursor:pointer;
-}
-.tab.active{
-  background:var(--primary);
-  color:#fff;
-}
+    /* IMAGE SLIDER */
+    .marquee{
+      overflow:hidden;
+      background:#fff;
+      border-bottom:4px solid var(--primary);
+    }
+    .marquee-track{
+      display:flex;
+      width:max-content;
+      animation:scroll 20s linear infinite;
+    }
+    .marquee img{
+      height:180px;
+      margin:10px;
+      border-radius:14px;
+      box-shadow:0 6px 15px rgba(0,0,0,0.2);
+    }
+    @keyframes scroll{
+      from{transform:translateX(0);}
+      to{transform:translateX(-50%);}
+    }
 
-/* GRID */
-.container{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:18px;
-  padding:18px;
-  padding-bottom:100px; /* 🔥 TOUCH FIX */
-}
-@media(min-width:700px){
-  .container{grid-template-columns:repeat(3,1fr);}
-}
+    /* SEARCH */
+    .search{
+      padding:14px;
+      text-align:center;
+    }
+    .search input{
+      width:90%;
+      max-width:400px;
+      padding:12px;
+      border-radius:30px;
+      border:none;
+      outline:none;
+    }
 
-/* CARD */
-.book{
-  background:var(--card);
-  border-radius:18px;
-  padding:16px;
-  text-align:center;
-  box-shadow:0 10px 25px rgba(0,0,0,0.15);
-}
-.book h3{margin:6px 0;}
-.unit{
-  background:#c7d2fe;
-  display:inline-block;
-  padding:5px 14px;
-  border-radius:20px;
-  font-size:13px;
-  margin-bottom:8px;
-}
-.btn{
-  display:block;
-  margin:6px 0;
-  padding:10px;
-  border-radius:12px;
-  color:#fff;
-  text-decoration:none;
-  font-weight:600;
-}
-.open{background:#2563eb;}
-.download{background:#16a34a;}
-.hide{display:none;}
+    /* TABS */
+    .tabs{
+      display:flex;
+      justify-content:center;
+      gap:10px;
+      padding:10px;
+      flex-wrap:wrap;
+    }
+    .tab{
+      padding:8px 16px;
+      border-radius:20px;
+      background:#e0e7ff;
+      font-weight:600;
+      cursor:pointer;
+    }
+    .tab.active{
+      background:var(--primary);
+      color:#fff;
+    }
 
-/* BOTTOM NAV */
-.bottom-nav{
-  position:fixed;
-  bottom:0;
-  width:100%;
-  background:#ffffff;
-  display:flex;
-  justify-content:space-around;
-  padding:10px 0;
-  box-shadow:0 -4px 10px rgba(0,0,0,0.2);
-  z-index:999; /* 🔥 IMPORTANT */
-}
-.bottom-nav button{
-  border:none;
-  background:none;
-  font-size:14px;
-  font-weight:600;
-  cursor:pointer;
-}
-</style>
+    /* GRID */
+    .container{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:18px;
+      padding:18px;
+      padding-bottom:100px;
+    }
+    @media(min-width:700px){
+      .container{grid-template-columns:repeat(3,1fr);}
+    }
+
+    /* CARD */
+    .book{
+      background:var(--card);
+      border-radius:18px;
+      padding:16px;
+      text-align:center;
+      box-shadow:0 10px 25px rgba(0,0,0,0.15);
+    }
+    .unit{
+      background:#c7d2fe;
+      display:inline-block;
+      padding:5px 14px;
+      border-radius:20px;
+      font-size:13px;
+      margin-bottom:8px;
+    }
+    .btn{
+      display:block;
+      margin:6px 0;
+      padding:10px;
+      border-radius:12px;
+      color:#fff;
+      text-decoration:none;
+      font-weight:600;
+    }
+    .open{background:#2563eb;}
+    .download{background:#16a34a;}
+    .hide{display:none;}
+
+    /* BOTTOM NAV */
+    .bottom-nav{
+      position:fixed;
+      bottom:0;
+      width:100%;
+      background:#fff;
+      display:flex;
+      justify-content:space-around;
+      padding:10px 0;
+      box-shadow:0 -4px 10px rgba(0,0,0,0.2);
+      z-index:999;
+    }
+    .bottom-nav button{
+      border:none;
+      background:none;
+      font-size:14px;
+      font-weight:600;
+      cursor:pointer;
+    }
+  </style>
 </head>
 
 <body>
 
 <header>
-📘 Vivek Diploma Study
-<button class="toggle" onclick="toggleDark()">🌙</button>
+  📘 Vivek Diploma Study
+  <button class="toggle" onclick="toggleDark()">🌙</button>
 </header>
 
 <!-- IMAGE SLIDER -->
@@ -190,7 +194,7 @@ header{
 
 <!-- SEARCH -->
 <div class="search">
-<input type="text" id="search" placeholder="Search subject or unit..." onkeyup="searchBooks()">
+  <input type="text" id="search" placeholder="Search subject or unit..." onkeyup="searchBooks()">
 </div>
 
 <!-- TABS -->
@@ -204,79 +208,57 @@ header{
 <!-- CONTENT -->
 <div class="container" id="books">
 
-<!-- MATH-2 -->
 <script>
-for(let i=1;i<=5;i++){
-document.write(`
-<div class="book math">
-<h3>📐 Math-2</h3>
-<div class="unit">Unit-${i}</div>
-<a class="btn open" href="math-unit${i}.pdf" target="_blank">Open PDF</a>
-<a class="btn download" href="math-unit${i}.pdf" download>Download</a>
-</div>
-`);
-}
-</script>
+const subjects = [
+  {cls:'math', name:'📐 Math-2', file:'math'},
+  {cls:'physics', name:'🔬 Physics-2', file:'physics'},
+  {cls:'mech', name:'⚙ Engineering Mechanics', file:'mech'}
+];
 
-<!-- PHYSICS-2 -->
-<script>
-for(let i=1;i<=5;i++){
-document.write(`
-<div class="book physics">
-<h3>🔬 Physics-2</h3>
-<div class="unit">Unit-${i}</div>
-<a class="btn open" href="physics-unit${i}.pdf" target="_blank">Open PDF</a>
-<a class="btn download" href="physics-unit${i}.pdf" download>Download</a>
-</div>
-`);
-}
-</script>
-
-<!-- ENGINEERING MECHANICS -->
-<script>
-for(let i=1;i<=5;i++){
-document.write(`
-<div class="book mech">
-<h3>⚙ Engineering Mechanics</h3>
-<div class="unit">Unit-${i}</div>
-<a class="btn open" href="mech-unit${i}.pdf" target="_blank">Open PDF</a>
-<a class="btn download" href="mech-unit${i}.pdf" download>Download</a>
-</div>
-`);
-}
+subjects.forEach(s=>{
+  for(let i=1;i<=5;i++){
+    document.write(`
+      <div class="book ${s.cls}">
+        <h3>${s.name}</h3>
+        <div class="unit">Unit-${i}</div>
+        <a class="btn open" href="pdf/${s.file}-unit${i}.pdf" target="_blank">📖 Open PDF</a>
+        <a class="btn download" href="pdf/${s.file}-unit${i}.pdf" target="_blank" download>⬇ Download</a>
+      </div>
+    `);
+  }
+});
 </script>
 
 </div>
 
 <!-- BOTTOM NAV -->
 <div class="bottom-nav">
-<button>🏠 Home</button>
-<button>📚 Subjects</button>
-<button>ℹ About</button>
+  <button>🏠 Home</button>
+  <button>📚 Subjects</button>
+  <button>ℹ About</button>
 </div>
 
 <script>
 function filterBooks(type,el){
- document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
- el.classList.add('active');
-
- document.querySelectorAll('.book').forEach(b=>{
-  b.classList.remove('hide');
-  if(type!='all' && !b.classList.contains(type)){
-    b.classList.add('hide');
-  }
- });
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  el.classList.add('active');
+  document.querySelectorAll('.book').forEach(b=>{
+    b.classList.remove('hide');
+    if(type!='all' && !b.classList.contains(type)){
+      b.classList.add('hide');
+    }
+  });
 }
 
 function searchBooks(){
- let v=document.getElementById('search').value.toLowerCase();
- document.querySelectorAll('.book').forEach(b=>{
-  b.style.display=b.innerText.toLowerCase().includes(v)?'block':'none';
- });
+  let v=document.getElementById('search').value.toLowerCase();
+  document.querySelectorAll('.book').forEach(b=>{
+    b.style.display=b.innerText.toLowerCase().includes(v)?'block':'none';
+  });
 }
 
 function toggleDark(){
- document.body.classList.toggle('dark');
+  document.body.classList.toggle('dark');
 }
 </script>
 
