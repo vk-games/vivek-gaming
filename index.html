@@ -23,6 +23,39 @@ header{
   font-weight:600;
 }
 
+/* ===== IMAGE SLIDER (RIGHT TO LEFT) ===== */
+.marquee{
+  width:100%;
+  overflow:hidden;
+  background:#ffffff;
+  border-bottom:4px solid #2563eb;
+}
+
+.marquee-track{
+  display:flex;
+  width:max-content;
+  animation: scroll-left 18s linear infinite;
+}
+
+.marquee img{
+  height:200px;
+  width:auto;
+  object-fit:cover;
+  margin:10px;
+  border-radius:12px;
+  box-shadow:0 6px 15px rgba(0,0,0,0.2);
+}
+
+/* RIGHT TO LEFT ANIMATION */
+@keyframes scroll-left{
+  from{
+    transform: translateX(0);
+  }
+  to{
+    transform: translateX(-50%);
+  }
+}
+
 /* GRID */
 .container{
   display:grid;
@@ -92,9 +125,24 @@ header{
 
 <header>📘 Vivek Diploma Study</header>
 
+<!-- IMAGE SCROLL SLIDER -->
+<div class="marquee">
+  <div class="marquee-track">
+    <img src="img1.jpg">
+    <img src="img2.jpg">
+    <img src="img3.jpg">
+    <img src="img4.jpg">
+    <img src="img5.jpg">
+
+    <!-- repeat for smooth loop -->
+    <img src="img1.jpg">
+    <img src="img2.jpg">
+    <img src="img3.jpg">
+  </div>
+</div>
+
 <div class="container">
 
-  <!-- UNIT 1 -->
   <div class="book">
     <h2>📐 Math-2</h2>
     <div class="unit">Unit-1</div>
@@ -102,7 +150,6 @@ header{
     <a class="btn download" href="Mathematics-II_73700437_2026_01_07_16_41.pdf" download>⬇ Download</a>
   </div>
 
-  <!-- UNIT 2 -->
   <div class="book">
     <h2>📐 Math-2</h2>
     <div class="unit">Unit-2</div>
@@ -110,7 +157,6 @@ header{
     <a class="btn download" href="Mathematics-II_Unit2.pdf" download>⬇ Download</a>
   </div>
 
-  <!-- UNIT 3 -->
   <div class="book">
     <h2>📐 Math-2</h2>
     <div class="unit">Unit-3</div>
@@ -118,7 +164,6 @@ header{
     <a class="btn download" href="Mathematics-II_Unit-3.pdf" download>⬇ Download</a>
   </div>
 
-  <!-- UNIT 4 -->
   <div class="book">
     <h2>📐 Math-2</h2>
     <div class="unit">Unit-4</div>
@@ -126,7 +171,6 @@ header{
     <a class="btn download" href="Mathematics-II_Unit-4.pdf" download>⬇ Download</a>
   </div>
 
-  <!-- UNIT 5 -->
   <div class="book">
     <h2>📐 Math-2</h2>
     <div class="unit">Unit-5</div>
